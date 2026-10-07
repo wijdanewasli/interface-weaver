@@ -15,6 +15,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { useState } from "react";
+import type { ReactNode } from "react";
 import orbitImage from "@/assets/edutek-orbit.jpg";
 
 export const Route = createFileRoute("/")({
@@ -31,7 +32,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type PanelProps = { children: React.ReactNode; className?: string };
+type PanelProps = { children: ReactNode; className?: string };
 
 function Panel({ children, className = "" }: PanelProps) {
   return <section className={`panel-reveal overflow-hidden rounded-[1.35rem] border-2 border-foreground bg-card ${className}`}>{children}</section>;
@@ -91,7 +92,7 @@ function Index() {
             <div className="mt-auto">
               <p className="text-sm font-semibold">Taux cette semaine</p>
               <div className="font-display text-6xl font-semibold">94<span className="text-3xl">%</span></div>
-              <div className="mt-6 flex h-24 items-end gap-2 border-b-2 border-foreground pb-1">{[44, 62, 55, 78, 90].map((height, i) => <div key={height} className={`flex-1 rounded-t-md border border-foreground ${i === 4 ? "bg-primary" : "bg-card"}`} style={{ height: `${height}%` }} />)}</div>
+              <div className="mt-6 flex h-24 items-end gap-2 border-b-2 border-foreground pb-1">{["h-[44%]", "h-[62%]", "h-[55%]", "h-[78%]", "h-[90%]"].map((heightClass, i) => <div key={heightClass} className={`flex-1 rounded-t-md border border-foreground ${heightClass} ${i === 4 ? "bg-primary" : "bg-card"}`} />)}</div>
               <div className="mt-2 flex justify-between text-[10px] font-bold uppercase"><span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span></div>
             </div>
           </Panel>
@@ -99,7 +100,7 @@ function Index() {
           <Panel className="p-5 lg:col-span-6">
             <div className="flex items-center justify-between"><div><span className="rounded-full border border-foreground px-2 py-1 text-[10px] font-bold uppercase">À corriger</span><h2 className="mt-3 font-display text-3xl font-semibold">Travaux récents</h2></div><button aria-label="Voir tous les devoirs" className="grid size-9 place-items-center rounded-full border border-foreground"><ChevronRight size={18} /></button></div>
             <div className="mt-5 space-y-3">
-              {[{ title: "Structures de données", meta: "18 / 24 rendus", due: "Aujourd'hui", value: 75 }, { title: "Modèle relationnel", meta: "21 / 26 rendus", due: "Demain", value: 81 }].map((work) => <button key={work.title} className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 border-t border-rule py-3 text-left"><span className="grid size-10 place-items-center rounded-full bg-muted"><FileCheck2 size={18} /></span><span><strong className="block text-sm">{work.title}</strong><small className="text-muted-foreground">{work.meta} · {work.due}</small></span><span className="w-20"><span className="mb-1 block text-right text-xs font-bold">{work.value}%</span><span className="block h-2 overflow-hidden rounded-full bg-muted"><span className="block h-full rounded-full bg-primary" style={{ width: `${work.value}%` }} /></span></span></button>)}
+              {[{ title: "Structures de données", meta: "18 / 24 rendus", due: "Aujourd'hui", value: 75, width: "w-3/4" }, { title: "Modèle relationnel", meta: "21 / 26 rendus", due: "Demain", value: 81, width: "w-4/5" }].map((work) => <button key={work.title} className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 border-t border-rule py-3 text-left"><span className="grid size-10 place-items-center rounded-full bg-muted"><FileCheck2 size={18} /></span><span><strong className="block text-sm">{work.title}</strong><small className="text-muted-foreground">{work.meta} · {work.due}</small></span><span className="w-20"><span className="mb-1 block text-right text-xs font-bold">{work.value}%</span><span className="block h-2 overflow-hidden rounded-full bg-muted"><span className={`block h-full rounded-full bg-primary ${work.width}`} /></span></span></button>)}
             </div>
           </Panel>
 
