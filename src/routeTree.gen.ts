@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RoleRouteImport } from './routes/$role'
 import { Route as RoleIndexRouteImport } from './routes/$role.index'
+import { Route as RoleCoursCourseIdRouteImport } from './routes/$role.cours.$courseId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,28 +29,36 @@ const RoleIndexRoute = RoleIndexRouteImport.update({
   path: '/',
   getParentRoute: () => RoleRoute,
 } as any)
+const RoleCoursCourseIdRoute = RoleCoursCourseIdRouteImport.update({
+  id: '/cours/$courseId',
+  path: '/cours/$courseId',
+  getParentRoute: () => RoleRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$role': typeof RoleRouteWithChildren
   '/$role/': typeof RoleIndexRoute
+  '/$role/cours/$courseId': typeof RoleCoursCourseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$role': typeof RoleIndexRoute
+  '/$role/cours/$courseId': typeof RoleCoursCourseIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$role': typeof RoleRouteWithChildren
   '/$role/': typeof RoleIndexRoute
+  '/$role/cours/$courseId': typeof RoleCoursCourseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$role' | '/$role/'
+  fullPaths: '/' | '/$role' | '/$role/' | '/$role/cours/$courseId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$role'
-  id: '__root__' | '/' | '/$role' | '/$role/'
+  to: '/' | '/$role' | '/$role/cours/$courseId'
+  id: '__root__' | '/' | '/$role' | '/$role/' | '/$role/cours/$courseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,15 +89,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoleIndexRouteImport
       parentRoute: typeof RoleRoute
     }
+    '/$role/cours/$courseId': {
+      id: '/$role/cours/$courseId'
+      path: '/cours/$courseId'
+      fullPath: '/$role/cours/$courseId'
+      preLoaderRoute: typeof RoleCoursCourseIdRouteImport
+      parentRoute: typeof RoleRoute
+    }
   }
 }
 
 interface RoleRouteChildren {
   RoleIndexRoute: typeof RoleIndexRoute
+  RoleCoursCourseIdRoute: typeof RoleCoursCourseIdRoute
 }
 
 const RoleRouteChildren: RoleRouteChildren = {
   RoleIndexRoute: RoleIndexRoute,
+  RoleCoursCourseIdRoute: RoleCoursCourseIdRoute,
 }
 
 const RoleRouteWithChildren = RoleRoute._addFileChildren(RoleRouteChildren)
