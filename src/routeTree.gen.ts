@@ -14,6 +14,20 @@ import { Route as RoleRouteImport } from './routes/$role'
 import { Route as ConnexionRouteImport } from './routes/connexion'
 import { Route as RoleIndexRouteImport } from './routes/$role.index'
 import { Route as RoleSectionRouteImport } from './routes/$role.$section'
+import { Route as RoleAnnoncesRouteImport } from './routes/$role.annonces'
+import { Route as RoleClassesRouteImport } from './routes/$role.classes'
+import { Route as RoleCoursRouteImport } from './routes/$role.cours'
+import { Route as RoleDevoirsRouteImport } from './routes/$role.devoirs'
+import { Route as RoleMessagesRouteImport } from './routes/$role.messages'
+import { Route as RoleNotesRouteImport } from './routes/$role.notes'
+import { Route as RoleOrganisationRouteImport } from './routes/$role.organisation'
+import { Route as RoleParametresRouteImport } from './routes/$role.parametres'
+import { Route as RolePlanningRouteImport } from './routes/$role.planning'
+import { Route as RolePresencesRouteImport } from './routes/$role.presences'
+import { Route as RoleQuizRouteImport } from './routes/$role.quiz'
+import { Route as RoleRessourcesRouteImport } from './routes/$role.ressources'
+import { Route as RoleUtilisateursRouteImport } from './routes/$role.utilisateurs'
+import { Route as RoleCoursIndexRouteImport } from './routes/$role.cours.index'
 import { Route as RoleCoursCourseIdRouteImport } from './routes/$role.cours.$courseId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,10 +55,80 @@ const RoleSectionRoute = RoleSectionRouteImport.update({
   path: '/$section',
   getParentRoute: () => RoleRoute,
 } as any)
-const RoleCoursCourseIdRoute = RoleCoursCourseIdRouteImport.update({
-  id: '/cours/$courseId',
-  path: '/cours/$courseId',
+const RoleAnnoncesRoute = RoleAnnoncesRouteImport.update({
+  id: '/annonces',
+  path: '/annonces',
   getParentRoute: () => RoleRoute,
+} as any)
+const RoleClassesRoute = RoleClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleCoursRoute = RoleCoursRouteImport.update({
+  id: '/cours',
+  path: '/cours',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleDevoirsRoute = RoleDevoirsRouteImport.update({
+  id: '/devoirs',
+  path: '/devoirs',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleMessagesRoute = RoleMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleNotesRoute = RoleNotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleOrganisationRoute = RoleOrganisationRouteImport.update({
+  id: '/organisation',
+  path: '/organisation',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleParametresRoute = RoleParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RolePlanningRoute = RolePlanningRouteImport.update({
+  id: '/planning',
+  path: '/planning',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RolePresencesRoute = RolePresencesRouteImport.update({
+  id: '/presences',
+  path: '/presences',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleQuizRoute = RoleQuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleRessourcesRoute = RoleRessourcesRouteImport.update({
+  id: '/ressources',
+  path: '/ressources',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleUtilisateursRoute = RoleUtilisateursRouteImport.update({
+  id: '/utilisateurs',
+  path: '/utilisateurs',
+  getParentRoute: () => RoleRoute,
+} as any)
+const RoleCoursIndexRoute = RoleCoursIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RoleCoursRoute,
+} as any)
+const RoleCoursCourseIdRoute = RoleCoursCourseIdRouteImport.update({
+  id: '/$courseId',
+  path: '/$courseId',
+  getParentRoute: () => RoleCoursRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -52,15 +136,42 @@ export interface FileRoutesByFullPath {
   '/$role': typeof RoleRouteWithChildren
   '/connexion': typeof ConnexionRoute
   '/$role/$section': typeof RoleSectionRoute
+  '/$role/annonces': typeof RoleAnnoncesRoute
+  '/$role/classes': typeof RoleClassesRoute
+  '/$role/cours': typeof RoleCoursRouteWithChildren
+  '/$role/devoirs': typeof RoleDevoirsRoute
+  '/$role/messages': typeof RoleMessagesRoute
+  '/$role/notes': typeof RoleNotesRoute
+  '/$role/organisation': typeof RoleOrganisationRoute
+  '/$role/parametres': typeof RoleParametresRoute
+  '/$role/planning': typeof RolePlanningRoute
+  '/$role/presences': typeof RolePresencesRoute
+  '/$role/quiz': typeof RoleQuizRoute
+  '/$role/ressources': typeof RoleRessourcesRoute
+  '/$role/utilisateurs': typeof RoleUtilisateursRoute
   '/$role/': typeof RoleIndexRoute
   '/$role/cours/$courseId': typeof RoleCoursCourseIdRoute
+  '/$role/cours/': typeof RoleCoursIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/connexion': typeof ConnexionRoute
   '/$role/$section': typeof RoleSectionRoute
+  '/$role/annonces': typeof RoleAnnoncesRoute
+  '/$role/classes': typeof RoleClassesRoute
+  '/$role/devoirs': typeof RoleDevoirsRoute
+  '/$role/messages': typeof RoleMessagesRoute
+  '/$role/notes': typeof RoleNotesRoute
+  '/$role/organisation': typeof RoleOrganisationRoute
+  '/$role/parametres': typeof RoleParametresRoute
+  '/$role/planning': typeof RolePlanningRoute
+  '/$role/presences': typeof RolePresencesRoute
+  '/$role/quiz': typeof RoleQuizRoute
+  '/$role/ressources': typeof RoleRessourcesRoute
+  '/$role/utilisateurs': typeof RoleUtilisateursRoute
   '/$role': typeof RoleIndexRoute
   '/$role/cours/$courseId': typeof RoleCoursCourseIdRoute
+  '/$role/cours': typeof RoleCoursIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,8 +179,22 @@ export interface FileRoutesById {
   '/$role': typeof RoleRouteWithChildren
   '/connexion': typeof ConnexionRoute
   '/$role/$section': typeof RoleSectionRoute
+  '/$role/annonces': typeof RoleAnnoncesRoute
+  '/$role/classes': typeof RoleClassesRoute
+  '/$role/cours': typeof RoleCoursRouteWithChildren
+  '/$role/devoirs': typeof RoleDevoirsRoute
+  '/$role/messages': typeof RoleMessagesRoute
+  '/$role/notes': typeof RoleNotesRoute
+  '/$role/organisation': typeof RoleOrganisationRoute
+  '/$role/parametres': typeof RoleParametresRoute
+  '/$role/planning': typeof RolePlanningRoute
+  '/$role/presences': typeof RolePresencesRoute
+  '/$role/quiz': typeof RoleQuizRoute
+  '/$role/ressources': typeof RoleRessourcesRoute
+  '/$role/utilisateurs': typeof RoleUtilisateursRoute
   '/$role/': typeof RoleIndexRoute
   '/$role/cours/$courseId': typeof RoleCoursCourseIdRoute
+  '/$role/cours/': typeof RoleCoursIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -78,19 +203,64 @@ export interface FileRouteTypes {
     | '/$role'
     | '/connexion'
     | '/$role/$section'
+    | '/$role/annonces'
+    | '/$role/classes'
+    | '/$role/cours'
+    | '/$role/devoirs'
+    | '/$role/messages'
+    | '/$role/notes'
+    | '/$role/organisation'
+    | '/$role/parametres'
+    | '/$role/planning'
+    | '/$role/presences'
+    | '/$role/quiz'
+    | '/$role/ressources'
+    | '/$role/utilisateurs'
     | '/$role/'
     | '/$role/cours/$courseId'
+    | '/$role/cours/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/connexion' | '/$role/$section' | '/$role' | '/$role/cours/$courseId'
+    | '/'
+    | '/connexion'
+    | '/$role/$section'
+    | '/$role/annonces'
+    | '/$role/classes'
+    | '/$role/devoirs'
+    | '/$role/messages'
+    | '/$role/notes'
+    | '/$role/organisation'
+    | '/$role/parametres'
+    | '/$role/planning'
+    | '/$role/presences'
+    | '/$role/quiz'
+    | '/$role/ressources'
+    | '/$role/utilisateurs'
+    | '/$role'
+    | '/$role/cours/$courseId'
+    | '/$role/cours'
   id:
     | '__root__'
     | '/'
     | '/$role'
     | '/connexion'
     | '/$role/$section'
+    | '/$role/annonces'
+    | '/$role/classes'
+    | '/$role/cours'
+    | '/$role/devoirs'
+    | '/$role/messages'
+    | '/$role/notes'
+    | '/$role/organisation'
+    | '/$role/parametres'
+    | '/$role/planning'
+    | '/$role/presences'
+    | '/$role/quiz'
+    | '/$role/ressources'
+    | '/$role/utilisateurs'
     | '/$role/'
     | '/$role/cours/$courseId'
+    | '/$role/cours/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -136,26 +306,162 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoleSectionRouteImport
       parentRoute: typeof RoleRoute
     }
+    '/$role/annonces': {
+      id: '/$role/annonces'
+      path: '/annonces'
+      fullPath: '/$role/annonces'
+      preLoaderRoute: typeof RoleAnnoncesRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/classes': {
+      id: '/$role/classes'
+      path: '/classes'
+      fullPath: '/$role/classes'
+      preLoaderRoute: typeof RoleClassesRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/cours': {
+      id: '/$role/cours'
+      path: '/cours'
+      fullPath: '/$role/cours'
+      preLoaderRoute: typeof RoleCoursRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/devoirs': {
+      id: '/$role/devoirs'
+      path: '/devoirs'
+      fullPath: '/$role/devoirs'
+      preLoaderRoute: typeof RoleDevoirsRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/messages': {
+      id: '/$role/messages'
+      path: '/messages'
+      fullPath: '/$role/messages'
+      preLoaderRoute: typeof RoleMessagesRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/notes': {
+      id: '/$role/notes'
+      path: '/notes'
+      fullPath: '/$role/notes'
+      preLoaderRoute: typeof RoleNotesRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/organisation': {
+      id: '/$role/organisation'
+      path: '/organisation'
+      fullPath: '/$role/organisation'
+      preLoaderRoute: typeof RoleOrganisationRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/parametres': {
+      id: '/$role/parametres'
+      path: '/parametres'
+      fullPath: '/$role/parametres'
+      preLoaderRoute: typeof RoleParametresRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/planning': {
+      id: '/$role/planning'
+      path: '/planning'
+      fullPath: '/$role/planning'
+      preLoaderRoute: typeof RolePlanningRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/presences': {
+      id: '/$role/presences'
+      path: '/presences'
+      fullPath: '/$role/presences'
+      preLoaderRoute: typeof RolePresencesRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/quiz': {
+      id: '/$role/quiz'
+      path: '/quiz'
+      fullPath: '/$role/quiz'
+      preLoaderRoute: typeof RoleQuizRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/ressources': {
+      id: '/$role/ressources'
+      path: '/ressources'
+      fullPath: '/$role/ressources'
+      preLoaderRoute: typeof RoleRessourcesRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/utilisateurs': {
+      id: '/$role/utilisateurs'
+      path: '/utilisateurs'
+      fullPath: '/$role/utilisateurs'
+      preLoaderRoute: typeof RoleUtilisateursRouteImport
+      parentRoute: typeof RoleRoute
+    }
+    '/$role/cours/': {
+      id: '/$role/cours/'
+      path: '/'
+      fullPath: '/$role/cours/'
+      preLoaderRoute: typeof RoleCoursIndexRouteImport
+      parentRoute: typeof RoleCoursRoute
+    }
     '/$role/cours/$courseId': {
       id: '/$role/cours/$courseId'
-      path: '/cours/$courseId'
+      path: '/$courseId'
       fullPath: '/$role/cours/$courseId'
       preLoaderRoute: typeof RoleCoursCourseIdRouteImport
-      parentRoute: typeof RoleRoute
+      parentRoute: typeof RoleCoursRoute
     }
   }
 }
 
+interface RoleCoursRouteChildren {
+  RoleCoursCourseIdRoute: typeof RoleCoursCourseIdRoute
+  RoleCoursIndexRoute: typeof RoleCoursIndexRoute
+}
+
+const RoleCoursRouteChildren: RoleCoursRouteChildren = {
+  RoleCoursCourseIdRoute: RoleCoursCourseIdRoute,
+  RoleCoursIndexRoute: RoleCoursIndexRoute,
+}
+
+const RoleCoursRouteWithChildren = RoleCoursRoute._addFileChildren(
+  RoleCoursRouteChildren,
+)
+
 interface RoleRouteChildren {
   RoleSectionRoute: typeof RoleSectionRoute
+  RoleAnnoncesRoute: typeof RoleAnnoncesRoute
+  RoleClassesRoute: typeof RoleClassesRoute
+  RoleCoursRoute: typeof RoleCoursRouteWithChildren
+  RoleDevoirsRoute: typeof RoleDevoirsRoute
+  RoleMessagesRoute: typeof RoleMessagesRoute
+  RoleNotesRoute: typeof RoleNotesRoute
+  RoleOrganisationRoute: typeof RoleOrganisationRoute
+  RoleParametresRoute: typeof RoleParametresRoute
+  RolePlanningRoute: typeof RolePlanningRoute
+  RolePresencesRoute: typeof RolePresencesRoute
+  RoleQuizRoute: typeof RoleQuizRoute
+  RoleRessourcesRoute: typeof RoleRessourcesRoute
+  RoleUtilisateursRoute: typeof RoleUtilisateursRoute
   RoleIndexRoute: typeof RoleIndexRoute
-  RoleCoursCourseIdRoute: typeof RoleCoursCourseIdRoute
 }
 
 const RoleRouteChildren: RoleRouteChildren = {
   RoleSectionRoute: RoleSectionRoute,
+  RoleAnnoncesRoute: RoleAnnoncesRoute,
+  RoleClassesRoute: RoleClassesRoute,
+  RoleCoursRoute: RoleCoursRouteWithChildren,
+  RoleDevoirsRoute: RoleDevoirsRoute,
+  RoleMessagesRoute: RoleMessagesRoute,
+  RoleNotesRoute: RoleNotesRoute,
+  RoleOrganisationRoute: RoleOrganisationRoute,
+  RoleParametresRoute: RoleParametresRoute,
+  RolePlanningRoute: RolePlanningRoute,
+  RolePresencesRoute: RolePresencesRoute,
+  RoleQuizRoute: RoleQuizRoute,
+  RoleRessourcesRoute: RoleRessourcesRoute,
+  RoleUtilisateursRoute: RoleUtilisateursRoute,
   RoleIndexRoute: RoleIndexRoute,
-  RoleCoursCourseIdRoute: RoleCoursCourseIdRoute,
 }
 
 const RoleRouteWithChildren = RoleRoute._addFileChildren(RoleRouteChildren)
