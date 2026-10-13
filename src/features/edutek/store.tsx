@@ -1,8 +1,12 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import algorithmImage from '@/assets/algorithmique.jpg';
 import databaseImage from '@/assets/database.jpg';
 import webImage from '@/assets/web.jpg';
-import type { AttendanceStatus, Role } from './domain';
+import type { AttendanceStatus, Role, RequestStatus } from './domain';
+export type SessionUser = { email: string; role: Role; name: string };
+export type DocRequest = { id: string; student: string; type: string; copies: number; reason: string; date: string; status: RequestStatus; response?: string };
+export type CertRequest = { id: string; student: string; certificate: string; motivation: string; date: string; status: RequestStatus; process?: string; examDate?: string; room?: string };
+export type Internship = { id: string; student: string; company: string; subject: string; supervisor: string; start: string; end: string; report?: string; reportDate?: string; reportStatus: 'Non déposé' | 'Déposé' | 'Validé' | 'À corriger'; feedback?: string; defenseDate?: string; defenseRoom?: string; jury?: string; defenseGrade?: number };
 export type Course = { id: string; title: string; category: string; group: string; image: string; chapters: string[]; published: boolean; students: number; progress: number };
 export type Assignment = { id: string; title: string; course: string; deadline: string; submitted: number; total: number; file?: string; attachment?: string; score?: number; comment?: string; submittedAt?: string };
 export type Announcement = { id: string; title: string; body: string; group: string; date: string; attachment?: string };
@@ -51,7 +55,14 @@ function useSampleState() {
  const [resources,setResources] = useState([{name:'Support — Structures de données.pdf',folder:'Algorithmique',type:'PDF',size:'2,4 Mo'},{name:'Exercices — Modèle relationnel.pdf',folder:'Bases de données',type:'PDF',size:'1,1 Mo'},{name:'Introduction à HTML',folder:'Développement web',type:'Lien',size:'MDN Web Docs'}]);
  const [organisations,setOrganisations] = useState({classes:['L2 Informatique · Groupe A','L2 Informatique · Groupe B','L1 Informatique · Groupe A'],filieres:['Informatique','Mathématiques'],matieres:['Algorithmique','Bases de données','Développement web'],annees:['2026 – 2027','2025 – 2026']});
  const [profile,setProfile] = useState({name:'Amine Mansour',email:'amine.mansour@edutek.example',notifications:true});
- return {role,setRole,courses,setCourses,assignments,setAssignments,people,setPeople,quizzes,setQuizzes,attendance,setAttendance,attendanceHistory,setAttendanceHistory,grades,setGrades,announcements,setAnnouncements,messages,setMessages,resources,setResources,organisations,setOrganisations,profile,setProfile};
+  const [user,setUserState] = useState<SessionUser|null>(null);
+  const [ready,setReady] = useState(false);
+  useEffect(()=>{try{const v=sessionStorage.getItem('edutek-user');if(v)setUserState(JSON.parse(v))}catch{}setReady(true)},[]);
+  const setUser=(u:SessionUser|null)=>{setUserState(u);if(u)sessionStorage.setItem('edutek-user',JSON.stringify(u));else sessionStorage.removeItem('edutek-user')};
+  const [docRequests,setDocRequests] = useState<DocRequest[]>([{id:'d1',student:'Sarah Ben Ali',type:"Attestation d'inscription Français",copies:2,reason:'Dossier de bourse',date:'2026-10-05',status:'Validée',response:'Document prêt. À retirer au bureau de scolarité à partir du 08/10.'},{id:'d2',student:'Youssef Trabelsi',type:'Attestation de présence Anglais',copies:1,reason:'Demande de visa',date:'2026-10-10',status:'En attente'}]);
+  const [certRequests,setCertRequests] = useState<CertRequest[]>([{id:'c1',student:'Meriem Khaled',certificate:'Certification en langue anglaise',motivation:'Valider mon niveau B2',date:'2026-10-02',status:'En cours',process:'Dossier reçu. Merci de fournir une copie de la carte d’étudiant et le reçu de paiement des frais d’examen.'}]);
+  const [internships,setInternships] = useState<Internship[]>([{id:'i1',student:'Sarah Ben Ali',company:'Tunisie Telecom',subject:'Application de suivi des incidents réseau',supervisor:'Amine Mansour',start:'2026-07-01',end:'2026-08-31',reportStatus:'Non déposé'},{id:'i2',student:'Youssef Trabelsi',company:'InstaDeep',subject:'Tableau de bord d’analyse de données',supervisor:'Amine Mansour',start:'2026-07-01',end:'2026-09-15',report:'rapport-stage-trabelsi.pdf',reportDate:'2026-09-20',reportStatus:'Déposé'}]);
+ return {user,setUser,ready,docRequests,setDocRequests,certRequests,setCertRequests,internships,setInternships,role,setRole,courses,setCourses,assignments,setAssignments,people,setPeople,quizzes,setQuizzes,attendance,setAttendance,attendanceHistory,setAttendanceHistory,grades,setGrades,announcements,setAnnouncements,messages,setMessages,resources,setResources,organisations,setOrganisations,profile,setProfile};
 }
 type Store = ReturnType<typeof useSampleState>;
 const Context = createContext<Store | null>(null);

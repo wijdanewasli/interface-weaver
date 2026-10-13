@@ -28,6 +28,7 @@ import { Route as RolePresencesRouteImport } from './routes/$role.presences'
 import { Route as RoleQuizRouteImport } from './routes/$role.quiz'
 import { Route as RoleRessourcesRouteImport } from './routes/$role.ressources'
 import { Route as RoleScolariteRouteImport } from './routes/$role.scolarite'
+import { Route as RoleStagesRouteImport } from './routes/$role.stages'
 import { Route as RoleStatistiquesRouteImport } from './routes/$role.statistiques'
 import { Route as RoleUtilisateursRouteImport } from './routes/$role.utilisateurs'
 import { Route as RoleCoursIndexRouteImport } from './routes/$role.cours.index'
@@ -128,6 +129,11 @@ const RoleScolariteRoute = RoleScolariteRouteImport.update({
   path: '/scolarite',
   getParentRoute: () => RoleRoute,
 } as any)
+const RoleStagesRoute = RoleStagesRouteImport.update({
+  id: '/stages',
+  path: '/stages',
+  getParentRoute: () => RoleRoute,
+} as any)
 const RoleStatistiquesRoute = RoleStatistiquesRouteImport.update({
   id: '/statistiques',
   path: '/statistiques',
@@ -168,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/$role/quiz': typeof RoleQuizRoute
   '/$role/ressources': typeof RoleRessourcesRoute
   '/$role/scolarite': typeof RoleScolariteRoute
+  '/$role/stages': typeof RoleStagesRoute
   '/$role/statistiques': typeof RoleStatistiquesRoute
   '/$role/utilisateurs': typeof RoleUtilisateursRoute
   '/$role/': typeof RoleIndexRoute
@@ -191,6 +198,7 @@ export interface FileRoutesByTo {
   '/$role/quiz': typeof RoleQuizRoute
   '/$role/ressources': typeof RoleRessourcesRoute
   '/$role/scolarite': typeof RoleScolariteRoute
+  '/$role/stages': typeof RoleStagesRoute
   '/$role/statistiques': typeof RoleStatistiquesRoute
   '/$role/utilisateurs': typeof RoleUtilisateursRoute
   '/$role': typeof RoleIndexRoute
@@ -217,6 +225,7 @@ export interface FileRoutesById {
   '/$role/quiz': typeof RoleQuizRoute
   '/$role/ressources': typeof RoleRessourcesRoute
   '/$role/scolarite': typeof RoleScolariteRoute
+  '/$role/stages': typeof RoleStagesRoute
   '/$role/statistiques': typeof RoleStatistiquesRoute
   '/$role/utilisateurs': typeof RoleUtilisateursRoute
   '/$role/': typeof RoleIndexRoute
@@ -244,6 +253,7 @@ export interface FileRouteTypes {
     | '/$role/quiz'
     | '/$role/ressources'
     | '/$role/scolarite'
+    | '/$role/stages'
     | '/$role/statistiques'
     | '/$role/utilisateurs'
     | '/$role/'
@@ -267,6 +277,7 @@ export interface FileRouteTypes {
     | '/$role/quiz'
     | '/$role/ressources'
     | '/$role/scolarite'
+    | '/$role/stages'
     | '/$role/statistiques'
     | '/$role/utilisateurs'
     | '/$role'
@@ -292,6 +303,7 @@ export interface FileRouteTypes {
     | '/$role/quiz'
     | '/$role/ressources'
     | '/$role/scolarite'
+    | '/$role/stages'
     | '/$role/statistiques'
     | '/$role/utilisateurs'
     | '/$role/'
@@ -440,6 +452,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoleScolariteRouteImport
       parentRoute: typeof RoleRoute
     }
+    '/$role/stages': {
+      id: '/$role/stages'
+      path: '/stages'
+      fullPath: '/$role/stages'
+      preLoaderRoute: typeof RoleStagesRouteImport
+      parentRoute: typeof RoleRoute
+    }
     '/$role/statistiques': {
       id: '/$role/statistiques'
       path: '/statistiques'
@@ -501,6 +520,7 @@ interface RoleRouteChildren {
   RoleQuizRoute: typeof RoleQuizRoute
   RoleRessourcesRoute: typeof RoleRessourcesRoute
   RoleScolariteRoute: typeof RoleScolariteRoute
+  RoleStagesRoute: typeof RoleStagesRoute
   RoleStatistiquesRoute: typeof RoleStatistiquesRoute
   RoleUtilisateursRoute: typeof RoleUtilisateursRoute
   RoleIndexRoute: typeof RoleIndexRoute
@@ -522,6 +542,7 @@ const RoleRouteChildren: RoleRouteChildren = {
   RoleQuizRoute: RoleQuizRoute,
   RoleRessourcesRoute: RoleRessourcesRoute,
   RoleScolariteRoute: RoleScolariteRoute,
+  RoleStagesRoute: RoleStagesRoute,
   RoleStatistiquesRoute: RoleStatistiquesRoute,
   RoleUtilisateursRoute: RoleUtilisateursRoute,
   RoleIndexRoute: RoleIndexRoute,
