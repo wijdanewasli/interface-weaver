@@ -1,8 +1,12 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import algorithmImage from '@/assets/algorithmique.jpg';
 import databaseImage from '@/assets/database.jpg';
 import webImage from '@/assets/web.jpg';
-import type { AttendanceStatus, Role } from './domain';
+import type { AttendanceStatus, Role, RequestStatus } from './domain';
+export type SessionUser = { email: string; role: Role; name: string };
+export type DocRequest = { id: string; student: string; type: string; copies: number; reason: string; date: string; status: RequestStatus; response?: string };
+export type CertRequest = { id: string; student: string; certificate: string; motivation: string; date: string; status: RequestStatus; process?: string; examDate?: string; room?: string };
+export type Internship = { id: string; student: string; company: string; subject: string; supervisor: string; start: string; end: string; report?: string; reportDate?: string; reportStatus: 'Non déposé' | 'Déposé' | 'Validé' | 'À corriger'; feedback?: string; defenseDate?: string; defenseRoom?: string; jury?: string; defenseGrade?: number };
 export type Course = { id: string; title: string; category: string; group: string; image: string; chapters: string[]; published: boolean; students: number; progress: number };
 export type Assignment = { id: string; title: string; course: string; deadline: string; submitted: number; total: number; file?: string; attachment?: string; score?: number; comment?: string; submittedAt?: string };
 export type Announcement = { id: string; title: string; body: string; group: string; date: string; attachment?: string };
