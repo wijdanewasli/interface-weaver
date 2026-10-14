@@ -40,7 +40,7 @@ export function Scolarite({ role }: { role: Role }) {
 
 export function Certifications({ role }: { role: Role }) {
   const s = useEduTek(); const me = useMe();
-  const [open, setOpen] = useState(false); const [cert, setCert] = useState(certificates[0]); const [motivation, setMotivation] = useState('');
+  const [open, setOpen] = useState(false); const [cert, setCert] = useState<string>(certificates[0]!); const [motivation, setMotivation] = useState('');
   const [edit, setEdit] = useState<CertRequest | null>(null);
   const list = role === 'etudiant' ? s.certRequests.filter(r => r.student === me) : s.certRequests;
   return <>
