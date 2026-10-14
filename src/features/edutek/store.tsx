@@ -65,6 +65,7 @@ function useSampleState() {
  return {user,setUser,ready,docRequests,setDocRequests,certRequests,setCertRequests,internships,setInternships,role,setRole,courses,setCourses,assignments,setAssignments,people,setPeople,quizzes,setQuizzes,attendance,setAttendance,attendanceHistory,setAttendanceHistory,grades,setGrades,announcements,setAnnouncements,messages,setMessages,resources,setResources,organisations,setOrganisations,profile,setProfile};
 }
 type Store = ReturnType<typeof useSampleState>;
-const Context = createContext<Store | null>(null);
+const g = globalThis as unknown as { __edutekCtx?: React.Context<Store | null> };
+const Context = g.__edutekCtx ?? (g.__edutekCtx = createContext<Store | null>(null));
 export function EduTekProvider({children}:{children:ReactNode}) { const value=useSampleState(); return <Context.Provider value={value}>{children}</Context.Provider>; }
 export function useEduTek() { const value=useContext(Context); if(!value) throw new Error('EduTek provider missing'); return value; }

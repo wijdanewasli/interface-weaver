@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useEduTek } from '@/features/edutek/store';
 import { roleNames,pageHead,roles,isRole,authenticate,demoAccounts,type Role } from '@/features/edutek/domain';
-export const Route=createFileRoute('/connexion')({validateSearch:(s:Record<string,unknown>):{espace?:Role}=>({espace:typeof s['espace']==='string'&&isRole(s['espace'])?s['espace']:undefined}),head:()=>pageHead('Connexion aux espaces pédagogiques'),component:Connection});
+export const Route=createFileRoute('/connexion')({validateSearch:(s:Record<string,unknown>):{espace?:Role|undefined}=>({espace:typeof s['espace']==='string'&&isRole(s['espace'])?s['espace']:undefined}),head:()=>pageHead('Connexion aux espaces pédagogiques'),component:Connection});
 function Connection(){const s=useEduTek();const navigate=useNavigate();const {espace}=Route.useSearch();const [role,setRole]=useState<Role>(espace??'enseignant');const [email,setEmail]=useState('');const [password,setPassword]=useState('');const [error,setError]=useState('');
  const demo=demoAccounts.find(a=>a.role===role)!;
  function submit(e:React.FormEvent){e.preventDefault();const r=authenticate(email,password,role);if('error' in r){setError(r.error??'');return}s.setUser(r.user);s.setRole(role);navigate({to:'/$role',params:{role}})}

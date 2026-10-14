@@ -15,3 +15,4 @@
 - Generate downloadable sample reports in the browser, because exports should work without introducing a backend in this frontend-only scope.
 
 - Route each pedagogical section through a shared section dispatcher and individual static file routes, using a typed navigation map to keep deep links and role-specific presentation consistent.
+- Sign-in is a frontend demo check against fixed sample accounts kept in session storage, because no backend is connected yet.
