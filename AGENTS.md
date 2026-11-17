@@ -16,3 +16,4 @@
 
 - Route each pedagogical section through a shared section dispatcher and individual static file routes, using a typed navigation map to keep deep links and role-specific presentation consistent.
 - Sign-in is a frontend demo check against fixed sample accounts kept in session storage, because no backend is connected yet.
+- Keep the downloadable Symfony API separate from the live frontend and document its explicit connection steps, because PHP/MySQL runs locally outside the TanStack runtime.
